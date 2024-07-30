@@ -201,7 +201,7 @@ paths:
         '404':
           description: User not found
   /view/user/{userId}:
-    get:
+    put:
       tags:
         - view
       summary: Get events of a week by a user
@@ -267,11 +267,11 @@ paths:
                   untis:
                     type: array
                     items:
-                      $ref: 'untis.yaml#/components/schemas/Lesson'
+                      $ref: '#/components/schemas/Lesson'
                   cafeteria:
                     type: array
                     items:
-                      $ref: 'cafeteria.yaml#/components/schemas/Menue'
+                      $ref: '#/components/schemas/Menue'
         '404':
           description: User not found
         '401':
@@ -284,7 +284,7 @@ paths:
                 type: object
                 example: "{}"
   /view:
-    get:
+    put:
       tags:
         - view
       summary: Get events by a user
@@ -341,7 +341,7 @@ paths:
                   untis:
                     type: array
                     items:
-                      $ref: 'untis.yaml#/components/schemas/Lesson'
+                      $ref: '#/components/schemas/Lesson'
         '401':
           description: Unauthorized
         '204':
@@ -351,18 +351,113 @@ paths:
               schema:
                 type: object
                 example: "{}"
-  
   /login:
-    $ref: 'auth.yaml#/paths/~1login'
+    post:
+      tags:
+        - login
+      summary: Login and get a token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "john.doe@example.com"
+                password:
+                  type: string
+                  example: "yourpasswordhash"
+                  description: yourpassword hashed with SHA256
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: "your.jwt.token.here"
+                  user:
+                    $ref: 'swagger.yml#/components/schemas/User'
+        '401':
+          description: Unauthorized - wrong credentials
   /logout:
-    $ref: 'auth.yaml#/paths/~1logout'
+    post:
+      tags:
+        - login
+      summary: Logout and invalidate token
+      security:
+      - BearerAuth: []
+      responses:
+        '200':
+          description: Logout successful
+        '401':
+          description: Unauthorized - not logged in
   /currentUser:
-    $ref: 'auth.yaml#/paths/~1currentUser'
+    get:
+      tags:
+        - login
+      summary: Returns currently logged in user.
+      security:
+      - BearerAuth: []
+      responses:
+        '200':
+          description: Information about currently logged in user.
+          content:
+            application/json:
+              schema:
+                $ref: 'swagger.yml#/components/schemas/User'
+        '401':
+          description: Unauthorized - not logged in
   /cafeteria:
-    $ref: 'cafeteria.yaml#/paths/~1cafeteria'
+    get: 
+      summary: Get Menue in a defined time frame.
+      tags:
+        - cafeteria
+      parameters:
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: duration
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 7
+            default: 1
+            description: The amount of days the response should include.
+      responses:
+        '200':
+          description: The Menue
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Menue'
+        '401':
+          description: Unauthorized
+        '204':
+          description: No Menue in this time frame.
+          content:
+            application/json:
+              schema:
+                type: object
+                example: "[]"
 components:
   securitySchemes:
-    $ref: 'auth.yaml#/components/securitySchemes'
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     User:
       type: object
@@ -408,14 +503,125 @@ components:
         - If the Class ID is negative it the the choice is a blacklist.
         - If a Class ID is present as a negative as well as a positive value only the positive should be used.
     Class:
-      $ref: 'untis.yaml#/components/schemas/Class'
+      type: object
+      properties:
+        id:
+          type: integer
+          example: "101"
+          readOnly: true
+        name:
+          type: string
+          example: "5a"
+        mainTeacherId:
+          type: integer
+          example: 1
+        secondaryTeacherId:
+          type: integer
+          example: 1
+        mainClassLeaderID:
+          type: integer
+          example: 1
+        secondaryClassLeaderID:
+          type: integer
+          example: 1
     Lesson:
-      $ref: 'untis.yaml#/components/schemas/Lesson'
+      type: object
+      properties:
+        id:
+          type: string
+          example: "101"
+          readOnly: true
+        subjects:
+          type: array
+          items:
+            type: integer
+            example: 1
+            description: SubjectID
+        teachers:
+          type: array
+          items:
+            type: integer
+            example: 1
+            description: TeacherID
+        classes:
+          type: array
+          items:
+            type: integer
+            example: 1
+        startTime:
+          type: string
+          example: "2017-07-21T17:32:28Z"
+          format: date-time
+        endTime:
+          type: string
+          example: "2017-07-21T17:32:28Z"
+          format: date-time
+        rooms:
+          type: array
+          items:
+            type: integer
+            example: 1
+        lastUpdate:
+          type: string
+          format: date-time
     Subject:
-      $ref: 'untis.yaml#/components/schemas/Subject'
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 101
+          readOnly: true
+        name:
+          type: string
+          example: "Mathematics"
     Teacher:
-      $ref: 'untis.yaml#/components/schemas/Teacher'
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 101
+          readOnly: true
+        userId:
+          type: integer
+        name:
+          type: string
+          example: "Mustermann"
+        firstName:
+          type: string
+          example: "Max"
+        pronoun:
+          type: string
+        title:
+          type: string
     Room:
-      $ref: 'untis.yaml#/components/schemas/Room'
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 101
+          readOnly: true
+        name:
+          type: string
+          example: "110"
+        additionalInformation:
+          type: string
+          example: "Computerraum"
+    
+
     Menue:
-      $ref: 'cafeteria.yaml#/components/schemas/Menue'
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        cookteam:
+          type: string
+        mainDish:
+          type: string
+        mainDishVeg:
+          type: string
+        garnish:
+          type: string
+        dessert:
+          type: string
+
