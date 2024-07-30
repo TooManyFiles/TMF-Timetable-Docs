@@ -21,6 +21,12 @@ components:
         secondaryTeacherId:
           type: integer
           example: 1
+        mainClassLeaderID:
+          type: integer
+          example: 1
+        secondaryClassLeaderID:
+          type: integer
+          example: 1
     Lesson:
       type: object
       properties:
@@ -58,6 +64,9 @@ components:
           items:
             type: integer
             example: 1
+        lastUpdate:
+          type: string
+          format: date-time
     Subject:
       type: object
       properties:
@@ -83,6 +92,10 @@ components:
         firstName:
           type: string
           example: "Max"
+        pronoun:
+          type: string
+        title:
+          type: string
     Room:
       type: object
       properties:
