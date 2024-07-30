@@ -118,7 +118,88 @@ paths:
           description: User deleted successfully
         '404':
           description: User not found
-
+  /users/{userId}/choices/{choiceId}:
+    get:
+      tags:
+        - user
+      summary: Get a choice by userId and choiceId
+      security:
+      - BearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: choiceId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Choice
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Choice'
+        '404':
+          description: User or choice not found
+    post:
+      tags:
+        - user
+      summary: Modify or create a choice by userId and choiceId
+      security:
+      - BearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: choiceId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Choice'
+      responses:
+        '200':
+          description: Updated to
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Choice'
+        '404':
+          description: User or choice not found
+  /users/{userId}/choices:
+    get:
+      tags:
+        - user
+      summary: Get choices by userId
+      security:
+      - BearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User details
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Choice'
+        '404':
+          description: User not found
   /view/user/{userId}:
     get:
       tags:
@@ -306,13 +387,19 @@ components:
             type: integer
             example: "1"
             description: class ID
-        choice:
+        defaultChoice:
           $ref: '#/components/schemas/Choice'
       required:
         - id
         - name
     Choice:
       type: object
+      properties:
+        name:
+          type: string
+          example: "Normal"
+        id:
+          type: integer 
       additionalProperties: true
       example: "{1:[1,4,100]}"
       description: |
