@@ -465,8 +465,9 @@ components:
       type: object
       properties:
         id:
-          type: string
-          example: "1"
+          type: integer
+          example: 1
+          minimum: 0
           readOnly: true
         name:
           type: string
@@ -482,7 +483,8 @@ components:
           type: array
           items:
             type: integer
-            example: "1"
+            example: 1
+            minimum: 0
             description: class ID
         defaultChoice:
           $ref: '#/components/schemas/Choice'
@@ -492,11 +494,11 @@ components:
     Choice:
       type: object
       properties:
+        id:
+          type: integer 
         name:
           type: string
           example: "Normal"
-        id:
-          type: integer 
         userId:
           type: integer
         Choice:
@@ -513,7 +515,7 @@ components:
       properties:
         id:
           type: integer
-          example: "101"
+          example: 101
           readOnly: true
         name:
           type: string
@@ -535,7 +537,7 @@ components:
       properties:
         id:
           type: string
-          example: "101"
+          example: 101
           readOnly: true
         subjects:
           type: array
