@@ -504,7 +504,7 @@ components:
         Choice:
           type: object
           additionalProperties: true
-      example: "{1:[1,4,100]}"
+          example: "{1:[1,4,100]}"
       description: |
         Choice of subjects for the classes. {class:[subjects]}
         - If a class has a empty array as a choice all subjects should be shown.
