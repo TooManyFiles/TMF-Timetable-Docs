@@ -1,7 +1,9 @@
 openapi: 3.0.0
 info:
   title: School Timetable API
-  description: API for managing school timetables, users, and classes.
+  description: |
+    API for managing school timetables, users, and classes.
+    All requests may return 500 if an internal server error occurs
   version: 1.0.0
 servers:
   - url: http://localhost:8080
@@ -53,7 +55,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-  
+        '422':
+          description: Password to long or dose not mach requirements.
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                PasswordInvalid:
+                  value: "Password dose not match the requirements."
+                PasswordTooLong:
+                  value: "Password too long."
+        '409':
+          description: User already exists.
   /users/{userId}:
     get:
       tags:
@@ -387,6 +401,8 @@ paths:
                     $ref: '#/components/schemas/User'
         '401':
           description: Unauthorized - wrong credentials
+        '400':
+          description: Bad request - Invalid request body
   /logout:
     post:
       tags:
