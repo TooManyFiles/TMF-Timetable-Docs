@@ -15,6 +15,8 @@ tags:
     description: Operations about showing the timetable.
   - name: cafeteria
     description: Operations about cafeteria.
+  - name: untis
+    description: Operations about subjects, teachers, classes, and rooms.
   - name: login
     description: Operations about login.
   - name: choice
@@ -524,6 +526,82 @@ paths:
               schema:
                 type: object
                 example: "[]"
+  /untis/subjects:
+    get:
+      tags:
+        - untis
+      summary: Get all subjects
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of subjects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subject'
+        '401':
+          description: Unauthorized - Authentication required
+
+  /untis/teachers:
+    get:
+      tags:
+        - untis
+      summary: Get all teachers
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of teachers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Teacher'
+        '401':
+          description: Unauthorized - Authentication required
+
+  /untis/classes:
+    get:
+      tags:
+        - untis
+      summary: Get all classes
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of classes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Class'
+        '401':
+          description: Unauthorized - Authentication required
+
+  /untis/rooms:
+    get:
+      tags:
+        - untis
+      summary: Get all rooms
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of rooms
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Room'
+        '401':
+          description: Unauthorized - Authentication required
+
 components:
   securitySchemes:
     BearerAuth:
