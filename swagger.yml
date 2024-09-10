@@ -524,10 +524,10 @@ components:
         secondaryTeacherId:
           type: integer
           example: 1
-        mainClassLeaderID:
+        mainClassLeaderId:
           type: integer
           example: 1
-        secondaryClassLeaderID:
+        secondaryClassLeaderId:
           type: integer
           example: 1
     Lesson:
