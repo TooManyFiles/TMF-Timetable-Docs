@@ -252,26 +252,49 @@ paths:
             schema:
               type: object
               properties:
-                classes:
-                  type: array
-                  items:
-                    type: integer
-                teachers:
-                  type: array
-                  items:
-                    type: integer
-                subjects:
-                  type: array
-                  items:
-                    type: integer
-                customChoice:
-                  $ref: '#/components/schemas/Choice'
+                untis:
+                  type: object
+                  properties:
+                    Choice:
+                      $ref: '#/components/schemas/Choice'
                 provider:
                   type: array
                   items: 
                     type: string
                     enum: [untis, cafeteria]
                   example: [untis, cafeteria]
+              required:
+                - provider
+            examples:
+              ByID:
+                value: |
+                  {
+                    "untis":{
+                      "Choice": {
+                        "id": 0
+                      }
+                    },
+                    "provider": [
+                      "untis",
+                      "cafeteria"
+                    ]
+                  }
+                description: gets all events filtered with a existing Choice by the user
+              Custom:
+                value: |
+                  {
+                    "untis":{
+                      "Choice": {
+                        "Choice": "{1:[1,4,100]}"
+                      }
+                    },
+                    "provider": [
+                      "untis",
+                      "cafeteria"
+                    ]
+                  }
+                description: gets all events filtered with the custom Choice
+
       responses:
         '200':
           description: User details
@@ -330,22 +353,49 @@ paths:
             schema:
               type: object
               properties:
-                classes:
+                untis:
+                  type: object
+                  properties:
+                    Choice:
+                      $ref: '#/components/schemas/Choice'
+                provider:
                   type: array
-                  items:
-                    type: integer
-                teachers:
-                  type: array
-                  items:
-                    type: integer
-                subjects:
-                  type: array
-                  items:
-                    type: integer
-                rooms:
-                  type: array
-                  items:
-                    type: integer
+                  items: 
+                    type: string
+                    enum: [untis, cafeteria]
+                  example: [untis, cafeteria]
+              required:
+                - provider
+            examples:
+              ByID:
+                value: |
+                  {
+                    "untis":{
+                      "Choice": {
+                        "id": 0
+                      }
+                    },
+                    "provider": [
+                      "untis",
+                      "cafeteria"
+                    ]
+                  }
+                description: gets all events filtered with a existing Choice by the user
+              Custom:
+                value: |
+                  {
+                    "untis":{
+                      "Choice": {
+                        "Choice": "{1:[1,4,100]}"
+                      }
+                    },
+                    "provider": [
+                      "untis",
+                      "cafeteria"
+                    ]
+                  }
+                description: gets all events filtered with the custom Choice
+
       responses:
         '200':
           description: User details
