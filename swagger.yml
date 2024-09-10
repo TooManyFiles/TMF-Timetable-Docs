@@ -80,7 +80,7 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
       responses:
         '200':
           description: User details
@@ -101,7 +101,7 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
       requestBody:
         required: true
         content:
@@ -128,7 +128,7 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
       responses:
         '204':
           description: User deleted successfully
@@ -172,7 +172,7 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
         - name: choiceId
           in: path
           required: true
@@ -204,7 +204,7 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
       responses:
         '200':
           description: User details
@@ -228,7 +228,7 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
         - name: date
           in: query
           required: false
