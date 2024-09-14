@@ -51,7 +51,7 @@ paths:
             schema:
               type: object
               properties:
-                UserData:
+                userData:
                   $ref: '#/components/schemas/User'
                 password:
                   type: string
