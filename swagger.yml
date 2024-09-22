@@ -142,11 +142,11 @@ paths:
           description: User deleted successfully
         '404':
           description: User not found
-  /user/untisPWD:
+  /user/untisAcc:
     put:
       tags:
         - user
-      summary: Update the untisPWD of the active user
+      summary: Update the untisAcc of the active user
       security:
       - BearerAuth: []
       requestBody:
@@ -156,6 +156,12 @@ paths:
             schema:
               type: object
               properties:
+                forename:
+                  type: string
+                  example: "forename"
+                surname:
+                  type: string
+                  example: "surname"
                 untisPWD:
                   type: string
                   example: "untisPWD"
