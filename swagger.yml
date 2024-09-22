@@ -608,6 +608,19 @@ paths:
         '401':
           description: Unauthorized - Authentication required
 
+  /untis/fetch:
+    get:
+      tags:
+        - untis
+      summary: Fetch static data(rooms, teachers, classes) from Untis. (admin)
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successfully fetch static data. 
+        '401':
+          description: Unauthorized - Authentication required
+
 components:
   securitySchemes:
     BearerAuth:
@@ -777,6 +790,9 @@ components:
         firstName:
           type: string
           example: "Max"
+        schortName:
+          type: string
+          example: "MM"
         pronoun:
           type: string
         title:
