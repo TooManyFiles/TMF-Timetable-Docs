@@ -142,6 +142,31 @@ paths:
           description: User deleted successfully
         '404':
           description: User not found
+  /user/untisPWD:
+    put:
+      tags:
+        - user
+      summary: Update the untisPWD of the active user
+      security:
+      - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                untisPWD:
+                  type: string
+                  example: "untisPWD"
+                userPWD:
+                  type: string
+                  example: "userPWD"
+      responses:
+        '200':
+          description: User updated successfully
+        '404':
+          description: User not found
   /users/{userId}/choices/{choiceId}:
     get:
       tags:
