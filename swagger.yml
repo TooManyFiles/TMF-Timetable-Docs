@@ -790,7 +790,7 @@ components:
         firstName:
           type: string
           example: "Max"
-        schortName:
+        shortName:
           type: string
           example: "MM"
         pronoun:
