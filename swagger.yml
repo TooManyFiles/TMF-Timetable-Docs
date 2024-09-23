@@ -324,7 +324,9 @@ paths:
                   {
                     "untis":{
                       "Choice": {
-                        "Choice": "{1:[1,4,100]}"
+                        "Choice": {
+                        "1": [1, 4, 100]
+                        }
                       }
                     },
                     "provider": [
@@ -420,12 +422,15 @@ paths:
                     ]
                   }
                 description: gets all events filtered with a existing Choice by the user
+              
               Custom:
                 value: |
                   {
                     "untis":{
                       "Choice": {
-                        "Choice": "{1:[1,4,100]}"
+                        "Choice": {
+                        "1": [1, 4, 100]
+                        }
                       }
                     },
                     "provider": [
@@ -702,7 +707,7 @@ components:
         Choice:
           type: object
           additionalProperties: true
-          example: "{1:[1,4,100]}"
+          example: {1: [1, 4, 100]}
       description: |
         Choice of subjects for the classes. {class:[subjects]}
         - If a class has a empty array as a choice all subjects should be shown.
