@@ -162,12 +162,12 @@ paths:
                 surname:
                   type: string
                   example: "surname"
+                userName:
+                  type: string
+                  example: "userName"
                 untisPWD:
                   type: string
                   example: "untisPWD"
-                userPWD:
-                  type: string
-                  example: "userPWD"
       responses:
         '200':
           description: User updated successfully
