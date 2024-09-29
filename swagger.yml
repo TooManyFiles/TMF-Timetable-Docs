@@ -793,11 +793,13 @@ components:
         lastUpdate:
           type: string
           format: date-time
+        chairUp:
+          type: boolean
       required:
         - id
         - startTime
         - endTime
-        - lessonType        
+        - lessonType
     Subject:
       type: object
       properties:
