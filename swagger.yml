@@ -788,6 +788,12 @@ components:
           type: boolean
         additionalInformation:
           type: string
+        substitutionText:
+          type: string
+        lessonText:
+          type: string
+        bookingText:
+          type: string
         homework:
           type: string
         lastUpdate:
