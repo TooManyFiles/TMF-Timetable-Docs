@@ -8,6 +8,8 @@ info:
 servers:
   - url: http://localhost:8080
     description: Local server
+  - url: https://timetable.api.dev.toomanyfiles.dev/
+    description: TMF dev
 tags:
   - name: user
     description: Operations about user.
