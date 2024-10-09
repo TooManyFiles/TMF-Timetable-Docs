@@ -677,7 +677,7 @@ paths:
         - BearerAuth: []
       parameters:
         - name: date
-          in: query
+          in: path
           schema:
             type: string
             format: date
