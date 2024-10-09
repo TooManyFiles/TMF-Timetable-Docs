@@ -761,6 +761,33 @@ components:
           items:
             type: integer
             example: 1
+        rooms:
+          type: array
+          items:
+            type: integer
+            example: 1
+        origSubjects:
+          type: array
+          items:
+            type: integer
+            example: 1
+            description: SubjectID
+        origTeachers:
+          type: array
+          items:
+            type: integer
+            example: 1
+            description: TeacherID
+        origClasses:
+          type: array
+          items:
+            type: integer
+            example: 1
+        origRooms:
+          type: array
+          items:
+            type: integer
+            example: 1
         startTime:
           type: string
           example: "2017-07-21T17:32:28Z"
@@ -769,11 +796,6 @@ components:
           type: string
           example: "2017-07-21T17:32:28Z"
           format: date-time
-        rooms:
-          type: array
-          items:
-            type: integer
-            example: 1
         lessonType:
           type: string
           enum:
