@@ -23,6 +23,8 @@ tags:
     description: Operations about login.
   - name: choice
     description: Operations about choices.
+  - name: other
+    description: Other Endpoints
 paths:
   /users:
     get:
@@ -302,8 +304,8 @@ paths:
                   type: array
                   items: 
                     type: string
-                    enum: [untis, cafeteria]
-                  example: [untis, cafeteria]
+                    enum: [untis, cafeteria, week]
+                  example: [untis, cafeteria, week]
               required:
                 - provider
             examples:
@@ -317,7 +319,8 @@ paths:
                     },
                     "provider": [
                       "untis",
-                      "cafeteria"
+                      "cafeteria",
+                      "week"
                     ]
                   }
                 description: gets all events filtered with a existing Choice by the user
@@ -333,7 +336,8 @@ paths:
                     },
                     "provider": [
                       "untis",
-                      "cafeteria"
+                      "cafeteria",
+                      "week"
                     ]
                   }
                 description: gets all events filtered with the custom Choice
@@ -354,6 +358,8 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Menu'
+                  week:
+                    $ref: '#/components/schemas/Week'
         '404':
           description: User not found
         '401':
@@ -405,8 +411,8 @@ paths:
                   type: array
                   items: 
                     type: string
-                    enum: [untis, cafeteria]
-                  example: [untis, cafeteria]
+                    enum: [untis, cafeteria, week]
+                  example: [untis, cafeteria, week]
               required:
                 - provider
             examples:
@@ -420,7 +426,8 @@ paths:
                     },
                     "provider": [
                       "untis",
-                      "cafeteria"
+                      "cafeteria",
+                      "week"
                     ]
                   }
                 description: gets all events filtered with a existing Choice by the user
@@ -437,7 +444,8 @@ paths:
                     },
                     "provider": [
                       "untis",
-                      "cafeteria"
+                      "cafeteria",
+                      "week"
                     ]
                   }
                 description: gets all events filtered with the custom Choice
@@ -458,6 +466,8 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Menu'
+                  week:
+                    $ref: '#/components/schemas/Week'
         '401':
           description: Unauthorized
         '204':
@@ -658,7 +668,26 @@ paths:
           description: Successfully fetch static data. 
         '401':
           description: Unauthorized - Authentication required
-
+  /week/{date}:
+    get:
+      tags:
+        - other
+      summary: Gets the subtile for the week the date is include.
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: date
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Subtitle for the week the date is include.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Week'
 components:
   securitySchemes:
     BearerAuth:
@@ -897,4 +926,7 @@ components:
           type: string
       required:
         - date
-
+    Week:
+      type: string
+      description: Week subtitle for the Week the date(startDate) is in.
+      example: "A-Woche"
