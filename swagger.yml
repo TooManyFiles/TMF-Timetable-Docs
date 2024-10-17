@@ -119,14 +119,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/UserSettings'
       responses:
         '200':
           description: User updated successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/UserSettings'
         '404':
           description: User not found
     delete:
@@ -931,3 +931,15 @@ components:
       type: string
       description: Week subtitle for the Week the date(startDate) is in.
       example: "A-Woche"
+    UserSettings:
+      type: object
+      properties:
+        name:
+          type: string
+          description: User name
+        email:
+          type: string
+          description: User email
+        defaultChoiceID:
+          type: integer
+          description: id of default Choice
