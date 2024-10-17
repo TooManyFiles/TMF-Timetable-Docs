@@ -943,3 +943,4 @@ components:
         defaultChoiceID:
           type: integer
           description: id of default Choice
+      additionalProperties: true
