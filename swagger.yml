@@ -189,7 +189,7 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
         - name: choiceId
           in: path
           required: true
@@ -681,6 +681,7 @@ paths:
           schema:
             type: string
             format: date
+          required: true
       responses:
         '200':
           description: Subtitle for the week the date is include.
