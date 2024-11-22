@@ -305,7 +305,7 @@ paths:
                   items: 
                     type: string
                     enum: [untis, cafeteria, week, holyday]
-                  example: [untis, cafeteria, week]
+                  example: [untis, cafeteria, week,holyday]
               required:
                 - provider
             examples:
@@ -320,7 +320,8 @@ paths:
                     "provider": [
                       "untis",
                       "cafeteria",
-                      "week"
+                      "week",
+                      "holyday"
                     ]
                   }
                 description: gets all events filtered with a existing Choice by the user
@@ -337,7 +338,8 @@ paths:
                     "provider": [
                       "untis",
                       "cafeteria",
-                      "week"
+                      "week",
+                      "holyday"
                     ]
                   }
                 description: gets all events filtered with the custom Choice
@@ -416,7 +418,7 @@ paths:
                   items: 
                     type: string
                     enum: [untis, cafeteria, week, holyday]
-                  example: [untis, cafeteria, week]
+                  example: [untis, cafeteria, week, holyday]
               required:
                 - provider
             examples:
@@ -431,7 +433,8 @@ paths:
                     "provider": [
                       "untis",
                       "cafeteria",
-                      "week"
+                      "week",
+                      "holyday"
                     ]
                   }
                 description: gets all events filtered with a existing Choice by the user
@@ -449,7 +452,8 @@ paths:
                     "provider": [
                       "untis",
                       "cafeteria",
-                      "week"
+                      "week",
+                      "holyday"
                     ]
                   }
                 description: gets all events filtered with the custom Choice
