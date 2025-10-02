@@ -356,7 +356,7 @@ paths:
           schema:
             type: integer
             minimum: 1
-            maximum: 7
+            maximum: 14
             default: 1
             description: The amount of days the response should include.
       requestBody:
@@ -469,7 +469,7 @@ paths:
           schema:
             type: integer
             minimum: 1
-            maximum: 7
+            maximum: 14
             default: 1
             description: The amount of days the response should include.
       requestBody:
@@ -643,7 +643,7 @@ paths:
           schema:
             type: integer
             minimum: 1
-            maximum: 7
+            maximum: 14
             default: 1
             description: The amount of days the response should include.
       responses:
