@@ -177,6 +177,68 @@ paths:
           description: User updated successfully
         '404':
           description: User not found
+
+  /user/settings/{setting}:
+    put:
+      tags:
+        - user
+      summary: Update the defined setting of the active user
+      security:
+      - BearerAuth: []
+      parameters:
+        - name: setting
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - type: object
+                  additionalProperties: true
+                - type: string
+      responses:
+        '200':
+          description: User settings updated successfully
+        '404':
+          description: User not found
+        '403':
+          description: Setting is not allowed to be changed.
+        '401':
+          description: Unauthorized
+    get:
+      tags:
+        - user
+      summary: reads the defined setting form activeuser.
+      security:
+      - BearerAuth: []
+      parameters:
+        - name: setting
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User settings updated successfully
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    additionalProperties: true
+                  - type: string
+        '204':
+          description: Setting is empty or dose not exist.
+        '404':
+          description: User not found
+        '403':
+          description: Setting is not allowed to be changed.
+        '401':
+          description: Unauthorized
   /users/{userId}/choices/{choiceId}:
     get:
       tags:
