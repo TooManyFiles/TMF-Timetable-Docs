@@ -178,7 +178,7 @@ paths:
         '404':
           description: User not found
 
-  /user/settings/{setting}:
+  /user/settings/{settingType}/{setting}:
     put:
       tags:
         - user
@@ -187,6 +187,11 @@ paths:
       - BearerAuth: []
       parameters:
         - name: setting
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: settingType
           in: path
           required: true
           schema:
@@ -217,6 +222,11 @@ paths:
       - BearerAuth: []
       parameters:
         - name: setting
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: settingType
           in: path
           required: true
           schema:
